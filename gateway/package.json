@@ -1,5 +1,5 @@
 {
-  "name": "star-wars-api-microservice",
+  "name": "gateway",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
