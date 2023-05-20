@@ -16,7 +16,7 @@ const characterSchema = new Schema({
 
 // se puede y es conveniente declarar algunos metodos propios del schema por adelantado que ya sabemos que seguro vamos a usar. Como son propios del schema character en este caso, podemos declararlos a continuacion del schema.
 
-characterSchema.statics.list = async function () {
+characterSchema.statics.list = async function() {
     return await this.find().populate("homeworld", ["_id","name"]).populate("films", ["_id", "title"])
 }
 
@@ -24,8 +24,8 @@ characterSchema.statics.get = async function(id) {
     return await this.findById(id).populate("homeworld", ["_id","name"]).populate("films", ["_id", "title"])
 }
 
-characterSchema.statics.insert = async function (character) {
-    return await this.create(character)
+characterSchema.statics.insert = async function(new_document) {
+    return await this.create(new_document)
 }
 
 module.exports = characterSchema

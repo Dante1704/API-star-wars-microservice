@@ -19,8 +19,8 @@ planetSchema.statics.get = async function(id) {
     return await this.findById(id).populate("residents", ["_id","name"]).populate("films", ["_id", "title"])
 }
 
-planetSchema.statics.insert = async function (film) {
-    return await this.create(film)
+planetSchema.statics.insert = async function (new_document) {
+    return await this.create(new_document)
 }
 
 module.exports = planetSchema
