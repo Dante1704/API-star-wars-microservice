@@ -3,8 +3,7 @@ const { response } = require("../utils/index")
 
 
 module.exports = async (req, res) => {
-    console.log("entre al microservice characters");
-    const characters = await Characters.list()
-    console.log("response en microservice characters", characters);
+    const data = await Characters.list()
+    const characters = await data.data
     response(res, 200, characters)
 }

@@ -6,6 +6,6 @@ const charactersRouter = Router();
 
 charactersRouter.get("/characters", charactersController.getCharacters);
 charactersRouter.get("/characters/:id", charactersController.getCharactersById);
-charactersRouter.post("/characters/createCharacter", middlewares.characterValidation, charactersController.createCharacter)
+charactersRouter.post("/characters", middlewares.characterValidation, charactersController.createCharacter)
 
 module.exports = charactersRouter;
