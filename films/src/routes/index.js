@@ -4,6 +4,6 @@ const middlewares = require("../middlewares/index")
 
 const filmsRouter = Router();
 
-filmsRouter.get("/films", middlewares.filmsValidator ,filmsController.getFilms);
+filmsRouter.get("/films", middlewares.filmsValidator, filmsController.getFilms);
 
 module.exports = filmsRouter;

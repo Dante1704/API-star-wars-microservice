@@ -6,8 +6,9 @@ const app = express()
 app.use(morgan("dev"))
 app.use(express.json());
 
+// ante una peticion a /characters quiero redirigir al puerto 3001 de la computadora characters
 app.use("/characters", createProxyMiddleware({
-	target:"http://characters:3001",
+	target:"http://characters:3001", 
 	changeOrigin:true
 }))
 

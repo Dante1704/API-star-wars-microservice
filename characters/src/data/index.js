@@ -1,10 +1,14 @@
+const axios = require("axios")
 const characters = require("./characters.json")
 
 module.exports = {
-    list: async () => {
-        return characters
+    create: async (new_character) => {
+        return axios.post("http://database:3004/Character", new_character)
     },
-    create: async () => {
-        throw Error("Hay un error al momento de crear el personaje")
+    list: async () => {
+        return axios.get("http://database:3004/Character")
+    },
+    getOne: async (id) => {
+        return axios.get(`http://database:3004/Character/${id}`)
     }
 }
