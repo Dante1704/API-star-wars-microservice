@@ -3,10 +3,10 @@ const morgan = require("morgan");
 
 const server = express();
 
-server.use(express.json());
 server.use(morgan("dev"));
+server.use(express.json());
 
-server.use(require("./routes/index"));
+server.use(require("./routes"));
 
 //cuando caigo en una ruta que no existe, entra acá
 server.use("*", (req,res) => {

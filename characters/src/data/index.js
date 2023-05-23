@@ -3,12 +3,16 @@ const characters = require("./characters.json")
 
 module.exports = {
     create: async (new_character) => {
-        return axios.post("http://database:3004/Character", new_character)
+        return await axios({
+            method:"post",
+            url:"http://database:3004/Character",
+            data: new_character
+        })
     },
     list: async () => {
-        return axios.get("http://database:3004/Character")
+        return await axios.get("http://database:3004/Character")
     },
     getOne: async (id) => {
-        return axios.get(`http://database:3004/Character/${id}`)
+        return await axios.get(`http://database:3004/Character/${id}`)
     }
 }

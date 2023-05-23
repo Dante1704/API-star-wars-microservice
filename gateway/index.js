@@ -1,10 +1,8 @@
 const express = require("express");
 const {createProxyMiddleware} = require("http-proxy-middleware");
-const morgan = require("morgan");
 
 const app = express()
-app.use(morgan("dev"))
-app.use(express.json());
+//IMPORTANTE ACA NO PONER EL BODY PARSER NI EL EXPRESS.JSON() PORQUE EL PROXY-MIDDLEWARE LO MANEJA
 
 // ante una peticion a /characters quiero redirigir al puerto 3001 de la computadora characters
 app.use("/characters", createProxyMiddleware({
