@@ -3,6 +3,7 @@ const {response} = require("../utils/index")
 
 
 module.exports= async (req, res) => {
-  const films = await Films.list()
+  const result = await Films.list()
+  const films = result.data.data
   response(res, 200, films)
 }

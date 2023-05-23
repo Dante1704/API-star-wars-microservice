@@ -3,7 +3,7 @@ const { response } = require("../utils/index")
 
 
 module.exports = async (req, res) => {
-    const data = await Characters.list()
-    const characters = await data.data
+    const result = await Characters.list()
+    const characters = await result.data.data
     response(res, 200, characters)
 }

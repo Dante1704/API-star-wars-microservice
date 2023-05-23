@@ -3,7 +3,7 @@ const {response} = require("../utils")
 
 module.exports = async (req, res) => {
         const body = req.body
-        const data = await Character.create(body)
-        const newCharacter = await data.data
+        const result = await Character.create(body)
+        const newCharacter = await result.data
         response(res, 201, newCharacter)    
 }
