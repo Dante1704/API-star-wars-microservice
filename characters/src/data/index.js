@@ -1,5 +1,5 @@
 const axios = require("axios")
-const characters = require("./characters.json")
+
 
 module.exports = {
     create: async (new_character) => {
