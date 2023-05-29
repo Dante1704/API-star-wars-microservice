@@ -7,12 +7,61 @@ const {createProxyMiddleware} = require("http-proxy-middleware");
 const server = express();
 
 //IMPORTANTE ACA NO PONER EL BODY PARSER NI EL EXPRESS.JSON() PORQUE EL PROXY-MIDDLEWARE LO MANEJA
+
 /**
  * @openapi
- * /api/v1/workouts:
+ * components:
+ *   schemas:
+ *     Characters:
+ *       type: object
+ *       properties:
+ *         _id: 
+ *           type: string
+ *           example: 1
+ *         name: 
+ *           type: string
+ *           example: Luke Skywalker  
+ *         height:
+ *           type: string
+ *           example: 172
+ *         mass:
+ *           type: string
+ *           example: 77
+ *         hair_color:
+ *           type: string
+ *           example: blond
+ *         skin_color:
+ *           type: string
+ *           example: fair
+ *         eye_color:
+ *           type: string
+ *           example: blue
+ *         birth_year:
+ *           type: string
+ *           example: 19BBY
+ *         gender:
+ *           type: string
+ *           example: male
+ *         homeworld:
+ *           type: string
+ *           example: 1
+ *         films:
+ *           type: array
+ *           items:
+ *             type: string
+ *           example: ["1", "2", "3", "6"]
+ */
+
+
+
+
+
+/**
+ * @openapi
+ * /characters:
  *   get:
  *     tags:
- *       - Workouts
+ *       - Star Wars Characters
  *     responses:
  *       200:
  *         description: OK
@@ -21,13 +70,65 @@ const server = express();
  *             schema:
  *               type: object
  *               properties:
- *                 status:
- *                   type: string
- *                   example: OK
+ *                 error:
+ *                   type: boolean
+ *                   example: false
  *                 data:
  *                   type: array 
  *                   items: 
- *                     type: object
+ *                     $ref: "#/components/schemas/Characters"
+ *       500:
+ *         description: FAILED
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string 
+ *                   example: some error message
+ /characters/{id}:
+ *   get:
+ *     tags:
+ *       - Star Wars Character by ID
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         description: The ID of the character asked
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: boolean
+ *                   example: false
+ *                 data:
+ *                   type: array 
+ *                   items: 
+ *                     $ref: "#/components/schemas/Characters"
+ *       500:
+ *         description: FAILED
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string 
+ *                   example: some error message
  */
 
 
@@ -46,5 +147,6 @@ server.use("/planets", createProxyMiddleware({
 	target:"http://localhost:3003",
 	changeOrigin:true
 }))
+
 
 module.exports = server
